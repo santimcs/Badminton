@@ -1,0 +1,56 @@
+<%= form_for(match) do |f| %>
+  <% if match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tournament_id %>
+    <%= f.collection_select :tournament_id,
+        Tournament.where('chosen = TRUE'), :id, :name_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date, order: [:day, :month, :year]  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :round_id %>
+    <%= f.collection_select  :round_id,
+        Round.order("name asc"), :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :team1_id %>
+    <%= f.collection_select :team1_id,
+    Team.joins('INNER JOIN "entries" ON "entries"."team_id" = "teams"."id"
+                INNER JOIN "tournaments" ON "tournaments"."id" = "entries"."tournament_id"
+                INNER JOIN "events" ON "events"."id" = "teams"."event_id" 
+                INNER JOIN "players" ON "players"."id" = "teams"."player1_id"')
+    .where("chosen = TRUE").order('"events"."abbr","players"."first_name"'), 
+    :id, :team_name  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :team2_id %>
+    <%= f.collection_select :team2_id,
+    Team.joins('INNER JOIN "entries" ON "entries"."team_id" = "teams"."id"
+                INNER JOIN "tournaments" ON "tournaments"."id" = "entries"."tournament_id"
+                INNER JOIN "events" ON "events"."id" = "teams"."event_id" 
+                INNER JOIN "players" ON "players"."id" = "teams"."player1_id"')
+    .where("chosen = TRUE").order('"events"."abbr","players"."first_name"'), 
+    :id, :team_name  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

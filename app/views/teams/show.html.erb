@@ -1,0 +1,36 @@
+<% if notice %>
+	<div class="alert alert-info">
+		<p id="notice">
+			<%= notice %>
+		</p>
+	</div>
+<% end %>
+</br>
+
+<p>
+  <strong>Event:</strong>
+  <%= @team.event.name %>
+</p>
+
+<p>
+  <strong>Player1:</strong>
+  <%= @team.player1.full_name %>
+</p>
+
+<p>
+  <strong>Player1:</strong>
+  <%= image_tag @team.player1.image_url.to_s %>
+</p>
+
+<p>
+  <strong>Player2:</strong>
+  <%= @team.player2.full_name %>
+</p>
+
+<p>
+  <strong>Player2:</strong>
+  <%= image_tag @team.player2.image_url.to_s %>
+</p>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

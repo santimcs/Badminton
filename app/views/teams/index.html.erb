@@ -1,0 +1,47 @@
+<% content_for :title, 'Teams' %>
+
+<div class ="page-header text-center" >
+  <%= link_to 'New Team', new_team_path,
+  :class => "btn btn-success pull-right"  %>
+  <h1>Teams</h1>
+</div>
+
+<table id="teams" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Country</th>
+      <th>Player1</th>
+      <th></th>
+      <th>Player2</th>
+            <th></th>
+      <th></th>
+      <th>Id</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.event.abbr %></td>
+        <td><%= team.player1.country.name %></td>
+        <td><%= team.player1.full_name %></td>
+        <td><%= image_tag team.player1.image_url.to_s, height: '60', width: '70' %></td>
+
+        <td><%= team.player2.full_name %></td>
+        <td><%= image_tag team.player2.image_url.to_s, height: '60', width: '70' %></td>
+        <td>
+          <%= link_to 'Show', team %></br>
+          <%= link_to 'Edit', edit_team_path(team) %></br>
+          <%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+        <td><%= team.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Team', new_team_path %>

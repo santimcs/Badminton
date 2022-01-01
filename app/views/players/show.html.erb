@@ -1,0 +1,37 @@
+<% if notice %>
+	<div  class="alert alert-info">
+    	<p id="notice">
+      		<%= notice %>
+    	</p>
+  	</div>
+<% end %>
+<br/>
+
+<p>
+  <strong>First name:</strong>
+  <%= @player.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @player.last_name %>
+</p>
+
+<p>
+  <strong>Jersey name:</strong>
+  <%= @player.jersey_name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= image_tag @player.country.flag_url.to_s %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @player.image_url.to_s %>
+
+</p>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>

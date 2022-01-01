@@ -1,0 +1,66 @@
+<% content_for :title, 'Matches' %>
+
+<div class ="page-header text-center" >
+  <%= link_to 'New Match', new_match_path,
+  :class => "btn btn-success pull-right"  %>
+  <% if @matches.first != nil %>
+  <h1><%= @matches.first.tournament.name %></h1>
+  <% else %>
+    <h1>Tournament</h1>
+  <% end %>
+</div>
+
+<table id="matches" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Round</th>
+      <th>Event</th>
+      <th>Team1</th>
+      <th>R</th>
+      <th></th>
+      <th>Score</th>
+      <th>Team2</th>
+      <th>R</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match.date.strftime("%m-%d") %></td>
+        <td><%= match.round.name %></td>
+        <td><%= match.team1.event.abbr %></td>
+
+        <td><%= match.team1.team_name %></td>
+        <% entry1 = Entry.find([match.tournament_id,match.team1_id]) %>
+        <td><%= entry1.rank %></td>
+        <td><%= image_tag match.team1.player1.image_url.to_s, height: '60', width: '70' %></td>
+        <% @result = Result.find_by_match_id(match.id) %>
+        <% if @result != nil %>
+          <td><%= @result.game %></td>
+        <% else %>
+          <td><%= link_to 'Result', new_result_path(:param1 => match.id,
+            :param2 => match.team1.team_name, :param3 => match.team2.team_name),
+            :class => "btn btn-primary" %></td>
+        <% end %>
+        <td><%= match.team2.team_name %></td>
+        <% entry2 = Entry.find([match.tournament_id,match.team2_id]) %>
+        <td><%= entry2.rank %></td>
+        <td><%= image_tag match.team2.player1.image_url.to_s, height: '60', width: '70' %></td>
+
+        <td>
+          <%= link_to 'Show', match %><br/>
+          <%= link_to 'Edit', edit_match_path(match) %><br/>
+          <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Match', new_match_path %>

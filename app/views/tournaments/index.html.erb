@@ -1,0 +1,41 @@
+<div class ="page-header text-center" >
+  <%= link_to 'New Tournament', new_tournament_path,
+  :class => "btn btn-success pull-right"  %>
+  <h1>Tournaments</h1>
+</div>
+
+<table id="tournaments" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Fm date</th>
+      <th>To date</th>
+      <th>Country</th>
+      <th>Selected</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.name %></td>
+        <td><%= tournament.category.name %></td> 
+        <td><%= tournament.fm_date %></td>
+        <td><%= tournament.to_date %></td>
+        <td><%= image_tag tournament.country.flag_url.to_s %></td>
+        <td><%= tournament.chosen %></td>
+
+        <td>
+          <%= link_to 'Show', tournament %></br>
+          <%= link_to 'Edit', edit_tournament_path(tournament) %></br>
+          <%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tournament', new_tournament_path %>

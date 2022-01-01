@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tournament: one
+  date: 2016-09-24
+  round: one
+  team1_id: 1
+  team2_id: 1
+
+two:
+  tournament: two
+  date: 2016-09-24
+  round: two
+  team1_id: 1
+  team2_id: 1

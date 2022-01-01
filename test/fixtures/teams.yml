@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  rank: 1
+  player1_id: 1
+  player2_id: 1
+
+two:
+  event: two
+  rank: 1
+  player1_id: 1
+  player2_id: 1

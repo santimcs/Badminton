@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  abbr: MyString
+  name: MyString
+  no_of_players: 1
+  sequence: 1
+
+two:
+  abbr: MyString
+  name: MyString
+  no_of_players: 1
+  sequence: 1

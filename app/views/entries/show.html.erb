@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tournament:</strong>
+  <%= @entry.tournament.name %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @entry.team.team_name %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @entry.rank %>
+</p>
+
+<p>
+  <strong>Player1:</strong>
+  <%= image_tag @entry.team.player1.image_url.to_s %>
+</p>
+
+<p>
+  <strong>Player2:</strong>
+  <%= image_tag @entry.team.player2.image_url.to_s %>
+</p>
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

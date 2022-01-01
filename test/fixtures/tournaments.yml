@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fm_date: 2016-09-24
+  to_date: 2016-09-24
+  country: one
+
+two:
+  name: MyString
+  fm_date: 2016-09-24
+  to_date: 2016-09-24
+  country: two
